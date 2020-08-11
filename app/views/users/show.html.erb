@@ -1,9 +1,36 @@
+    <% 
+    user = @user
+    color = "secondary" 
+    color = "primary"  if user.need_help? && user.visible
+    color = "danger"   if user.need_help? && user.visible
+    color = "success"  if user.can_help? && user.visible
+
+    view = ""
+    view = "En cours"      if user.work_in_progress? && user.visible
+    view = "Je peux aider" if user.can_help? && user.visible
+    view = "Besoin d'aide" if user.need_help? && user.visible
+
+    mood = ""
+    mood = user.mood if user.visible
+
+    %>
+
 <div class="container">
-  <div class="card border-primary mb-3 mt-4">
-    <div class="card-header text-primary">
+  <div class="card border-<%=color%> mb-3 mt-4">
+    <div class="card-header text-<%=color%>">
       <h4> <%= @user.name %> </h4>
+      <p class="ml-auto"> <%= view %></p>
     </div>
     <div class="card-body">
+
+      <% if user.visible %>
+        <div class="row mb-4">
+          <div class="col-lg-3 text-<%=color%>"> Mood </div>
+          <div class="col-lg-9">
+            <p class="text-<%=color%>"> <%= mood %> </p>
+          </div>
+        </div>
+      <% end %>
 
       <div class="row mb-4">
         <div class="col-lg-3"> email </div>

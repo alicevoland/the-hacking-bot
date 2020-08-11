@@ -27,10 +27,20 @@
           <div class="col-lg-9"> <%= @user.discord_username %> </div>
         </div>
 
+        <div class="row mb-4">
+          <div class="col-lg-3"> Statut </div>
+          <div class="col-lg-9"> <%= @user.status %> : <%= @user.mood %> </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-lg-3"> Visible ? </div>
+          <div class="col-lg-9"> <%= if @user.visible; "Oui" else "Non"; end %> </div>
+          </div>
+
+        </div>
+
       </div>
-
     </div>
-  </div>
-  <%= link_to "Modifier mes informations", edit_user_registration_path,:class => "nav-link btn btn-primary text-black btn-sm" %>
+    <%= link_to "Modifier mes informations", edit_user_registration_path,:class => "nav-link btn btn-primary text-black btn-sm" %>
 
-</div>
+  </div>

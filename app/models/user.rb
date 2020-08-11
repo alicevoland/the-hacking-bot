@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   validates :discord_id, uniqueness: true, allow_nil: true
 
+  # See https://www.sitepoint.com/enumerated-types-with-activerecord-and-postgresql/
+  enum status: %i[work_in_progress need_help can_help]
+
   def discord?
     !discord_id.nil?
   end

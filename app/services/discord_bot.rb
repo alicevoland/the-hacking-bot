@@ -43,64 +43,67 @@ class DiscordBot
       # user.work_in_progress!
     end
 
-    #     bot.command :sign_out do |event|
-    #       user = User.find_by(discord_id: event.user.id)
-    #       if user
-    #         if user.destroy
-    #           event.respond "Désolé de te voir partir #{event.user.username}"
-    #         else
-    #           event.respond 'Il y a eu un problème avec la désinscription, merci de nous faire un retour'
-    #         end
-    #       else
-    #         event.respond "Utilisateur #{event.user.username} non trouvé, est-tu bien inscrit avec '$sign_up' ?"
-    #       end
-    #       event.respond "Plus d'information sur <https://the-hacking-bot.herokuapp.com>"
-    #     end
+    bot.command :status do |event, status|
+      user = User.find_by(discord_id: event.user.id)
+      unless user
+        event.respond 'Utilisateur non trouvé, as-tu lié ton compte ? <https://the-hacking-bot.herokuapp.com/discord_verify>'
+        return
+      end
+      unless status
+        event.respond "Ton status actuel est #{user.status}"
+        return
+      end
+      if 'can_help' == status.downcase
+        user.can_help!
+      elsif 'need_help' == status.downcase
+        user.need_help!
+      elsif 'work_in_progress' == status.downcase
+        user.work_in_progress!
+      else
+        event.respond "Je ne comprends pas le statut #{status}. Les possibilités sont `can_help` OU `need_help` OU `work_in_progress`"
+        return
+      end
+      event.respond "Merci ! Ton statut est maintenant #{user.status}"
+    end
 
-    #     bot.command :need_help do |event|
-    #       user = User.find_by(discord_id: event.user.id)
-    #       if user
-    #         user.need_help!
-    #         event.respond "OK #{user.name}"
-    #       else
-    #         event.respond "Utilisateur #{event.user.username} non trouvé, est-tu bien inscrit avec '$sign_up' ?"
-    #       end
-    #       event.respond "Plus d'information sur <https://the-hacking-bot.herokuapp.com>"
-    #     end
+    bot.command :visible do |event, visible|
+      user = User.find_by(discord_id: event.user.id)
+      unless user
+        event.respond 'Utilisateur non trouvé, as-tu lié ton compte ? <https://the-hacking-bot.herokuapp.com/discord_verify>'
+        return
+      end
+      unless visible
+        event.respond "Ton visibilité actuelle est #{user.visible}"
+        return
+      end
+      user.update(visible: ('true' == visible.downcase))
+      event.respond "Merci ! Ta visibilité est maintenant #{user.visible}"
+    end
 
-    #     bot.command :can_help do |event|
-    #       user = User.find_by(discord_id: event.user.id)
-    #       if user
-    #         user.can_help!
-    #         event.respond "OK #{user.name}"
-    #       else
-    #         event.respond "Utilisateur #{event.user.username} non trouvé, est-tu bien inscrit avec '$sign_up' ?"
-    #       end
-    #       event.respond "Plus d'information sur <https://the-hacking-bot.herokuapp.com>"
-    #     end
+    bot.command :mood do |event, mood|
+      user = User.find_by(discord_id: event.user.id)
+      unless user
+        event.respond 'Utilisateur non trouvé, as-tu lié ton compte ? <https://the-hacking-bot.herokuapp.com/discord_verify>'
+        return
+      end
+      unless mood
+        event.respond "Ton mood actuel est #{user.mood}"
+        return
+      end
+      user.update(mood: mood)
+      event.respond "Merci ! Ton mood est maintenant #{user.mood}"
+    end
 
-    #     bot.command :work_in_progress do |event|
-    #       user = User.find_by(discord_id: event.user.id)
-    #       if user
-    #         user.work_in_progress!
-    #         event.respond "OK #{user.name}"
-    #       else
-    #         event.respond "Utilisateur #{event.user.username} non trouvé, est-tu bien inscrit avec '$sign_up' ?"
-    #       end
-    #       event.respond "Plus d'information sur <https://the-hacking-bot.herokuapp.com>"
-    #     end
-
-    #     bot.command :help do |event|
-    #       event.respond "Liste des commandes (The Hacking Bot):
-    # ------------------------------------------------------------------------
-    # `$help . . . . . . .` > ce message
-    # `$sign_up  . . . . .` > je veux m'inscrire
-    # `$sign_out . . . . .` > je veux me désinscrire
-    # `$can_help . . . . .` > modifier mon statut, je peux aider quelqu'un
-    # `$need_help  . . . .` > modifier mon statut, j'ai besoin d'aide
-    # `$work_in_progress .` > modifier mon statut, je ne veux pas être dérangé"
-    #       event.respond "Plus d'information sur <https://the-hacking-bot.herokuapp.com>"
-    #     end
+    bot.command :help do |event|
+      event.respond "Liste des commandes (The Hacking Bot):
+------------------------------------------------------------------------
+`$help               ` > Ce message
+`$verifiy EMAIL TOKEN` > Vérifier son compte Discord avec <https://the-hacking-bot.herokuapp.com/discord_verify>
+`$status STATUS      ` > Modifier mon statut, STATUS=`can_help` OU `need_help` OU `work_in_progress`
+`$mood \"mon problème\"` > Modifié mon humeur, sera affiché avec le status si je choisis visible. Les \" \" sont obligatoires (sinon seulement un mot)
+`$visible TRUE|FALSE ` > Je veux que mon statut et mood soit visible ou invisible sur <https://the-hacking-bot.herokuapp.com/users"
+      event.respond "Plus d'information sur <https://the-hacking-bot.herokuapp.com>"
+    end
 
     at_exit { bot.stop }
     bot.run :async
