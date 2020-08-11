@@ -24,16 +24,16 @@ L'inscription se fait en deux étapes. Une première étape sur le site [the-hac
 Assez peu de fonctionnalités pour le moment. On peut voir le statut des personnes qui souhaite le rendre public sur la page "Tous les membres" : [the-hacking-bot.herokuapp.com/users](https://the-hacking-bot.herokuapp.com/users).
 
 On peut choisir d'avoir un statut visible ou invisible :
- * `$visible true`
- * `$visible false`
+ * `$visible`
+ * `$unvisible`
 
-On peut choisir d'ajouter un "mood" qui apparait avec le statut si on a choisi visible (guillements obligatoires) :
- * `$mood "problème avec sendgrid.... HELP"`
+On peut choisir d'ajouter un "mood" qui apparait avec le statut si on a choisi visible :
+ * `$mood problème avec sendgrid.... HELP`
 
 Et enfin on peut définir son statut qui apparait donc uniquement si on a choisi visible :
- * `$status work_in_progress` (statut neutre)
- * `$status can_help`
- * `$status nedd_help`
+ * `$wip` (statut neutre - work in progress)
+ * `$can_help`
+ * `$need_help`
 
 
 ## Pour la suite
