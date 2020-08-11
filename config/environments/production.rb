@@ -92,5 +92,17 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    domain: 'thp.test',
+    user_name: ENV['SENDGRID_LOGIN'],
+    password: ENV['SENDGRID_PWD'],
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
   config.action_mailer.default_url_options = { host: 'the-hacking-bot.herokuapp.com' }
 end
