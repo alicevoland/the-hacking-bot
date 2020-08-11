@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 2020_08_11_115824) do
     t.datetime "updated_at", null: false
     t.bigint "discord_id"
     t.string "discord_username"
-    t.string "discord_verify_token"
-    t.index ["discord_verify_token"], name: "index_users_on_discord_verify_token", unique: true
+    t.string "discord_verify_digest"
+    t.index ["discord_id"], name: "index_users_on_discord_id", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

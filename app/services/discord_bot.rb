@@ -10,19 +10,36 @@ class DiscordBot
                                                         advanced_functionality: true
     bot = @@discord_bot
 
-    bot.command :verify do |event, token|
-      if user = User.find_by(discord_verify_token: token)
-        user.discord_id = event.user.id
-        user.discord_username = event.user.username
-        if user.save
-          event.respond "Merci #{event.user.username}, tu as bien lié ton compte <https://the-hacking-bot.herokuapp.com/profile>"
-        else
-          event.respond "Il y a eu un problème #{event.user.username}"
-        end
-      else
-        event.respond 'Utilisateur non trouvé, ou token périmé'
+    bot.command :verify do |event, email, token|
+      # Can't find user
+      unless (user = User.find_by(email: email))
+        event.respond "Pas d'utilisateur avec cet email : #{email}"
         event.respond 'Merci de recommencer : <https://the-hacking-bot.herokuapp.com/discord_verify>'
+        return
       end
+
+      # Account already linked
+      if user.discord?
+        event.respond 'Ton compte est déjà lié : <https://the-hacking-bot.herokuapp.com/profile>'
+        return
+      end
+
+      # Token is not right
+      unless BCrypt::Password.new(user.discord_verify_digest).is_password?(token)
+        event.respond 'Le token ne semble pas valide'
+        event.respond 'Merci de recommencer : <https://the-hacking-bot.herokuapp.com/discord_verify>'
+        return
+      end
+
+      # Update user does not work
+      unless user.update(discord_id: event.user.id, discord_username: event.user.username)
+        event.respond 'Désolé, il y a eu un problème inconnu (êtes vous déjà inscrit avec le même Discord ID ?)'
+        event.respond user.errors.full_messages.map(&:to_s).join "\n"
+        return
+     end
+
+      # OK, thank user
+      event.respond "Merci #{event.user.username}, tu as bien lié ton compte <https://the-hacking-bot.herokuapp.com/profile>"
       # user.work_in_progress!
     end
 

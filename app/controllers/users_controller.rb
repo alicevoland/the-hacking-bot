@@ -12,6 +12,10 @@ class UsersController < ApplicationController
   def discord_verify
     @user = current_user
     @discord_verify_token = SecureRandom.base64(10)
-    @user.update(discord_verify_token: @discord_verify_token)
+    @user.update(discord_verify_digest: BCrypt::Password.create(@discord_verify_token))
+  end
+
+  def index
+    @users = User.order(created_at: :desc)
   end
 end

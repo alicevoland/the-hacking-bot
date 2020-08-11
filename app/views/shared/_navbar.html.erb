@@ -8,6 +8,9 @@
 
     <div class="collapse navbar-collapse" id="navbarsExample07">
       <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to "Tous les membres", users_path, :class => "nav-link btn btn-outline-secondary text-black  btn-sm mr-2" %>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>

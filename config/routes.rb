@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'home#index'
   devise_for :users
 
-  resources :users, only: [:show]
+  resources :users, only: %i[show index]
 
   get 'profile', to: 'users#profile'
   get 'discord_verify', to: 'users#discord_verify'

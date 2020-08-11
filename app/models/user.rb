@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :discord_id, uniqueness: true, allow_nil: true
+
   def discord?
     !discord_id.nil?
   end
