@@ -10,6 +10,19 @@
   </div>
 </div>
 
+<div class="container mt">
+
+  <% if DiscordBot.run %>
+    <div class="alert alert-success mb-3" role="alert">
+      Tu viens de réveiller The Hacking Bot, merci !
+    </div>
+  <% else %>
+    <div class="alert alert-secondary mb-3" role="alert">
+      Info : The Hacking Bot déjà réveillé
+    </div>
+  <% end %>
+</div>
+
 <div class="container">
   <div class="card border-primary mb-3 mt-4">
     <div class="card-header text-primary">

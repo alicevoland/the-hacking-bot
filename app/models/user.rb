@@ -4,7 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  def discord?
+    !discord_id.nil?
+  end
+
   def name
-    email.to_s
+    if discord?
+      discord_username
+    else
+      email.to_s
+    end
   end
 end

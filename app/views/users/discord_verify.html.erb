@@ -15,16 +15,22 @@
           <div class="col-lg-3"> Discord ID </div>
           <div class="col-lg-9">
             <% if @user.discord? %>
-
-              <%= @user.discord_id %>
+              <%= @user.discord_id %> (compte Discord déjà vérifié)
             <% else %>
-              <%= link_to "Lier mon compte Discord", discord_verify_path,:class => "nav-link btn btn-success text-black btn-sm" %>
+              Merci de vérifier votre compte discord en envoyant un message à The Hacking bot : 
             <% end %>
           </div>
         </div>
         <div class="row mb-4">
           <div class="col-lg-3"> Discord UserName </div>
-          <div class="col-lg-9"> <%= @user.discord_username %> </div>
+          <div class="col-lg-9">
+            <% if @user.discord? %>
+              <%= @user.discord_username %>
+            <% else %>
+              <pre>$verify <%= @discord_verify_token %></pre>
+            <% end %>
+
+          </div>
         </div>
 
       </div>
