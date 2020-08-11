@@ -20,4 +20,8 @@ class User < ApplicationRecord
       email.to_s
     end
   end
+
+  def status_str
+    status.to_s
+  end
 end
