@@ -69,6 +69,7 @@ gem 'discordrb'
 
 gem 'devise'
 gem 'rails-i18n'
+gem 'devise-i18n'
 
 # Better errors
 group :development do

@@ -83,6 +83,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.9.1)
+      devise (>= 4.7.1)
     discordrb (3.3.0)
       discordrb-webhooks (~> 3.3.0)
       ffi (>= 1.9.24)
@@ -300,6 +302,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  devise-i18n
   discordrb
   dotenv-rails
   faker
