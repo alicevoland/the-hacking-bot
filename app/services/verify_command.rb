@@ -13,9 +13,8 @@ class VerifyCommand < BaseCommand
     return unless check_update event, user
 
     event.respond "Merci #{event.user.username}, tu as bien lié ton compte <https://the-hacking-bot.herokuapp.com/profile>"
+    footer event
   end
-
-  private
 
   def check_not_already_verified(event, user)
     if user.discord?
@@ -42,4 +41,8 @@ class VerifyCommand < BaseCommand
     end
     true
   end
+
+  def help_message
+    [{ command: keywords.first, args: 'EMAIL TOKEN', description: 'Pour lier le compte Discord à The Hacking Bot' }]
+end
 end

@@ -24,17 +24,28 @@ class StatusCommand < BaseCommand
       return
     end
     event.respond "Merci ! Ton statut est maintenant #{user.status}"
+    footer event
   end
 
   def post_register(bot)
     bot.command :need_help do |event, *_args|
       perform bot, event, [:need_help]
+      footer event
     end
     bot.command :can_help do |event, *_args|
       perform bot, event, [:can_help]
+      footer event
     end
     bot.command [:work_in_progress, :wip] do |event, *_args|
       perform bot, event, [:work_in_progress]
+      footer event
     end
+  end
+
+  def help_message
+    [{ command: keywords.first, args: 'STATUS', description: 'Au choix need_help, can_help, work_in_progress' },
+     { command: 'wip', args: '', description: 'raccourci pour $status _work_in_progress' },
+     { command: 'can_help', args: '', description: 'raccourci pour $status can_help' },
+     { command: 'need_help', args: '', description: 'raccourci pour $status need_help' }]
   end
 end

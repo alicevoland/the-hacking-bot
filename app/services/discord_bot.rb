@@ -17,6 +17,8 @@ class DiscordBot
     list.add_command MoodCommand.new
     list.add_command VisibilityCommand.new
 
+    list.add_help
+
     at_exit { bot.stop }
     bot.run :async
     puts 'STARTED THE HACKING BOT'

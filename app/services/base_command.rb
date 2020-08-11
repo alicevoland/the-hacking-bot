@@ -10,7 +10,6 @@ class BaseCommand
   def register bot
     bot.command keywords do |event, *args|
       perform bot, event, args
-      footer event
     end
     post_register(bot)
   end
@@ -43,7 +42,10 @@ class BaseCommand
   end
 
   def footer event
-    event.respond '--'
-    event.respond 'A bientôt sur : <https://the-hacking-bot.herokuapp.com>'
+    event.respond '-- A bientôt sur : <https://the-hacking-bot.herokuapp.com>'
+  end
+
+  def help_message
+    [{ command: keywords.first, args: '', descriptiont: '' }]
   end
 end
