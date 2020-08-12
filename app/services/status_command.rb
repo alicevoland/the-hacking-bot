@@ -30,15 +30,12 @@ class StatusCommand < BaseCommand
   def post_register(bot)
     bot.command :need_help do |event, *_args|
       perform bot, event, [:need_help]
-      footer event
     end
     bot.command :can_help do |event, *_args|
       perform bot, event, [:can_help]
-      footer event
     end
     bot.command [:work_in_progress, :wip] do |event, *_args|
       perform bot, event, [:work_in_progress]
-      footer event
     end
   end
 

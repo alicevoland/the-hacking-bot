@@ -13,7 +13,6 @@ class VerifyCommand < BaseCommand
     return unless check_update event, user
 
     event.respond "Merci #{event.user.username}, tu as bien lié ton compte <https://the-hacking-bot.herokuapp.com/profile>"
-    footer event
   end
 
   def check_not_already_verified(event, user)

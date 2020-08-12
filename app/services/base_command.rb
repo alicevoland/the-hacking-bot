@@ -3,13 +3,18 @@ class BaseCommand
     %i[keyword alias]
   end
 
-  def perform _bot, _event, _args
+  def perform(_bot, _event, _args)
     puts 'WARNING: BaseCommand#perform not overridden'
+  end
+
+  def perform_complete(bot, event, args)
+    perform bot, event, args
+    footer event
   end
 
   def register bot
     bot.command keywords do |event, *args|
-      perform bot, event, args
+      perform_complete bot, event, args
     end
     post_register(bot)
   end
