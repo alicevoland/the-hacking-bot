@@ -15,7 +15,6 @@ class MoodCommand < BaseCommand
 
     user.update(mood: mood)
     event.respond "Merci ! Ton humeur est maintenant #{user.mood}"
-    footer event
   end
 
   def help_message

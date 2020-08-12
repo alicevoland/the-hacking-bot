@@ -24,21 +24,17 @@ class StatusCommand < BaseCommand
       return
     end
     event.respond "Merci ! Ton statut est maintenant #{user.status}"
-    footer event
   end
 
   def post_register(bot)
     bot.command :need_help do |event, *_args|
-      perform bot, event, [:need_help]
-      footer event
+      perform_complete bot, event, [:need_help]
     end
     bot.command :can_help do |event, *_args|
-      perform bot, event, [:can_help]
-      footer event
+      perform_complete bot, event, [:can_help]
     end
     bot.command [:work_in_progress, :wip] do |event, *_args|
-      perform bot, event, [:work_in_progress]
-      footer event
+      perform_complete bot, event, [:work_in_progress]
     end
   end
 

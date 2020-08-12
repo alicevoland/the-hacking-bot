@@ -14,17 +14,14 @@ end
 
     user.update(visible: ('true' == args[0].downcase))
     event.respond "Merci ! Ta visibilité est maintenant #{user.visible}"
-    footer event
   end
 
   def post_register(bot)
     bot.command :visible do |event, *_args|
-      perform bot, event, ['true']
-      footer event
+      perform_complete bot, event, ['true']
     end
     bot.command [:invisible, :unvisible] do |event, *_args|
-      perform bot, event, [:false]
-      footer event
+      perform_complete bot, event, [:false]
     end
   end
 
