@@ -24,7 +24,6 @@ class StatusCommand < BaseCommand
       return
     end
     event.respond "Merci ! Ton statut est maintenant #{user.status}"
-    footer event
   end
 
   def post_register(bot)
