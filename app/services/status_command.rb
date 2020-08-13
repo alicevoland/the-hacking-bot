@@ -1,9 +1,9 @@
 class StatusCommand < BaseCommand
   def keywords
-    %i[status statut set]
+    %i[status statut set s]
   end
 
-  def perform _bot, event, args
+  def perform(_bot, event, args)
     return unless user = check_user_by_discord_id(event)
 
     if args.empty?
@@ -13,17 +13,11 @@ class StatusCommand < BaseCommand
 
     status = args.join('_').downcase
 
-    if 'can_help' == status.downcase
-      user.can_help!
-    elsif 'need_help' == status.downcase
-      user.need_help!
-    elsif 'work_in_progress' == status.downcase
-      user.work_in_progress!
+    if user.set_status(status)
+      event.respond "Merci ! Ton statut est maintenant #{user.status}"
     else
       event.respond "Je ne comprends pas le statut #{status}. Les possibilités sont `can_help` OU `need_help` OU `work_in_progress`"
-      return
     end
-    event.respond "Merci ! Ton statut est maintenant #{user.status}"
   end
 
   def post_register(bot)
