@@ -1,6 +1,6 @@
 class MoodCommand < BaseCommand
   def keywords
-    %i[mood humeur]
+    %i[mood humeur m]
   end
 
   def perform _bot, event, args
