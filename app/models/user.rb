@@ -28,10 +28,10 @@ class User < ApplicationRecord
   def set_status(status)
     if 'can_help' == status.downcase
       can_help!
-      update(status_expires_at: Time.now.utc + 1.minutes)
+      update(status_expires_at: Time.now.utc + 1.hours)
     elsif 'need_help' == status.downcase
       need_help!
-      update(status_expires_at: Time.now.utc + 1.minutes)
+      update(status_expires_at: Time.now.utc + 1.hours)
     elsif 'work_in_progress' == status.downcase
       work_in_progress!
       update(status_expires_at: nil)
