@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> <%= @page_title or "The Hacking Bot" %> </title>
+
+    <script src="https://kit.fontawesome.com/d8867a0f08.js" crossorigin="anonymous"></script>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= yield :page_head %>
+
+  </head>
+
+  <body>
+
+    <%= yield :navbar %>
+
+    <%= yield :jumbotron %>
+
+    <%= yield :alerts %>
+
+    <%= content_for?(:main) ? yield(:main) : yield %>
+
+    <%= yield :footer %>
+
+  </body>
+</html>

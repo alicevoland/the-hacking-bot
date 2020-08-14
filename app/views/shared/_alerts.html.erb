@@ -1,0 +1,13 @@
+<div class="container mt-3">
+  <% flash.each do |key, value|
+  type = 'secondary'
+  type = 'success' if %i[success].include?(key.to_sym)
+  type = 'primary' if %i[notice info].include?(key.to_sym)
+  type = 'danger' if %i[danger error].include?(key.to_sym)
+  type = 'warning' if %i[warning alert].include?(key.to_sym)
+  %>
+  <div class="alert alert-<%= type %>">
+    <%= "#{key} : #{value}" %>
+  </div>
+<% end %>
+</div>

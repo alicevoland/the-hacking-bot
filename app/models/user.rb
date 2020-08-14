@@ -50,4 +50,10 @@ class User < ApplicationRecord
       false
     end
   end
+
+  def create_discord_verify_token
+    @discord_verify_token = SecureRandom.base64(10)
+    update(discord_verify_digest: BCrypt::Password.create(@discord_verify_token))
+    @discord_verify_token
+  end
 end

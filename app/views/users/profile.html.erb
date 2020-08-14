@@ -1,46 +1,54 @@
+    <% 
+    user = @user
+    color = "secondary"
+    color = "dark" if user.visible     
+    color = "danger"   if user.need_help? && user.visible
+    color = "success"  if user.can_help? && user.visible
+
+    view = "Voir"
+    view = "En cours"      if user.work_in_progress?
+    view = "Je peux aider" if user.can_help?
+    view = "Besoin d'aide" if user.need_help?
+
+    mood = ""
+    mood = user.mood if user.visible
+
+    %>
+
 <div class="container">
-  <div class="card border-primary mb-3 mt-4">
-    <div class="card-header text-primary">
+  <div class="card border-<%=color%> mb-3 mt-4">
+    <div class="card-header text-<%=color%>">
       <h4> <%= @user.name %> </h4>
+      <p class="ml-auto"> <%= view %></p>
     </div>
     <div class="card-body">
-      <div class="card-body">
 
-        <div class="row mb-4">
-          <div class="col-lg-3"> email </div>
-          <div class="col-lg-9"> <%= @user.email %> </div>
-        </div>
+      <div class="row mb-4">
+        <div class="col-lg-3"> email </div>
+        <div class="col-lg-9"> <%= @user.email %> </div>
+      </div>
 
-        <div class="row mb-2">
-          <div class="col-lg-3"> Discord ID </div>
-          <div class="col-lg-9">
-            <% if @user.discord? %>
+      <div class="row mb-2">
+        <div class="col-lg-3"> Discord ID </div>
+        <div class="col-lg-9"><%= @user.discord_id %></div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-lg-3"> Discord UserName </div>
+        <div class="col-lg-9"> <%= @user.discord_username %> </div>
+      </div>
 
-              <%= @user.discord_id %>
-            <% else %>
-              <%= link_to "Lier mon compte Discord", discord_verify_path,:class => "nav-link btn btn-success text-black btn-sm" %>
-            <% end %>
-          </div>
-        </div>
-        <div class="row mb-4">
-          <div class="col-lg-3"> Discord UserName </div>
-          <div class="col-lg-9"> <%= @user.discord_username %> </div>
-        </div>
+      <div class="row mb-4">
+        <div class="col-lg-3"> Statut </div>
+        <div class="col-lg-9"> <%= @user.status_str %> : <%= @user.mood %> </div>
+      </div>
 
-        <div class="row mb-4">
-          <div class="col-lg-3"> Statut </div>
-          <div class="col-lg-9"> <%= @user.status_str %> : <%= @user.mood %> </div>
-        </div>
-
-        <div class="row mb-4">
-          <div class="col-lg-3"> Visible ? </div>
-          <div class="col-lg-9"> <%= if @user.visible; "Oui" else "Non"; end %> </div>
-          </div>
-
+      <div class="row mb-4">
+        <div class="col-lg-3"> Visible ? </div>
+        <div class="col-lg-9"> <%= if @user.visible; "Oui" else "Non"; end %> </div>
         </div>
 
       </div>
-    </div>
-    <%= link_to "Modifier mes informations", edit_user_registration_path,:class => "nav-link btn btn-primary text-black btn-sm" %>
 
+    </div>
   </div>
+  <%= link_to "Modifier mes informations", edit_user_registration_path,:class => "nav-link btn btn-primary text-black my-4" %>

@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: the-hacking-bot_production
-  username: the-hacking-bot
+  #username: the-hacking-bot
   password: <%= ENV['THE-HACKING-BOT_DATABASE_PASSWORD'] %>

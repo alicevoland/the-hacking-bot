@@ -1,41 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>TheHackingBot</title>
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-    crossorigin="anonymous"></script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
-    integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
-    crossorigin="anonymous"></script>
-
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/d8867a0f08.js" crossorigin="anonymous"></script>
-
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
-
-  <body>
-    <%= render partial: "shared/navbar" %>
-
-    <div class="container">
-      <div class="card border-primary mb-3 mt-4">
-        <div class="card-header text-primary">
-          <h4> The Hacking Bot </h4>
+<% @page_title = "The Hacking Bot | #{@devise_title or "Formulaire"}"%>
+<% content_for :main do %>
+  <div class="container d-flex justify-content-center">
+    <div class="col-lg-8">
+      <div class="card my-5 border-primary text-primary">
+        <div class="card-header bg-primary text-light">
+          <h4> <%= @devise_title or "Formulaire" %> </h4>
         </div>
-        <div class="card-body">
-          <%= yield %>
+        <div class="card-body py-4">
+          <%= content_for?(:devise) ? yield(:devise) : yield %>
         </div>
       </div>
     </div>
-  </body>
-</html>
+  </div>
+<% end %>
+
+<%= render template: 'layouts/application' %>

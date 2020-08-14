@@ -1,0 +1,9 @@
+<% content_for :main do %>
+
+  <div class="container my-3">
+    <%= content_for?(:users) ? yield(:users) : yield %>
+  </div>
+
+<% end %>
+
+<%= render template: 'layouts/application' %>

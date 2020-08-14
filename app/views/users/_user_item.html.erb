@@ -1,0 +1,32 @@
+    <% 
+    
+    color = "secondary"
+    color = "dark" if user.visible     
+    color = "danger"   if user.need_help? && user.visible
+    color = "success"  if user.can_help? && user.visible
+
+    view = "Voir"
+    view = "En cours"      if user.work_in_progress? && user.visible
+    view = "Je peux aider" if user.can_help? && user.visible
+    view = "Besoin d'aide" if user.need_help? && user.visible
+
+    mood = ""
+    mood = user.mood if user.visible
+    %>
+
+<div class="col-md-4 mb-3 mt-2">
+  <div class="card mb-4 box-shadow h-100 border-<%=color%>">
+
+    <div class="card-header h5 text-<%=color%>"> <%= user.name %> </div>
+
+    <div class="card-body d-flex flex-column">
+      <p><%= mood %> </p>
+      <div class="d-flex justify-content-between align-items-center mt-auto">
+        <div class="btn-group">
+          <a class="btn btn-<%=color%>" href="<%= user_path(user.id) %>"><%=view%></a>
+        </div>
+        <small class="text-muted"> </small>
+      </div>
+    </div>
+  </div>
+</div>
