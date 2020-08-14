@@ -6,10 +6,6 @@
   <%= render partial: "shared/alerts" %>
 <% end %>
 
-<% content_for :main_content do %>
-  <%= content_for?(:application_content) ? yield(:application_content) : yield %>
-<% end %>
-
 <% content_for :footer do %>
   <%= render partial: "shared/footer" %>
 <% end %>
