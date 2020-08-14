@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  root 'static_pages#home'
+
   devise_for :users
 
-  resources :users, only: %i[show index]
-
-  get 'profile', to: 'users#profile'
-  get 'discord_verify', to: 'users#discord_verify'
+  resources :users
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
