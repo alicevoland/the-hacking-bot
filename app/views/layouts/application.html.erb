@@ -1,32 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>TheHackingBot</title>
-    <!-- Bootstrap
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<% content_for :navbar do %>
+  <%= render partial: "shared/navbar" %>
+<% end %>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-    crossorigin="anonymous"></script>
+<% content_for :alerts do %>
+  <%= render partial: "shared/alerts" %>
+<% end %>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
-    integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
-    crossorigin="anonymous"></script> -->
+<% content_for :main_content do %>
+  <%= content_for?(:application_content) ? yield(:application_content) : yield %>
+<% end %>
 
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/d8867a0f08.js" crossorigin="anonymous"></script>
+<% content_for :footer do %>
+  <%= render partial: "shared/footer" %>
+<% end %>
 
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
-
-  <body>
-    <%= render partial: "shared/navbar" %>
-
-    <%= yield %>
-  </body>
-</html>
+<%= render template: "layouts/main" %>

@@ -1,0 +1,9 @@
+<% content_for :jumbotron do %>
+  <%= render 'shared/jumbotron' %>
+<% end %>
+
+<% content_for :application_content do %>
+  <%= content_for?(:home_content) ? yield(:home_content) : yield %>
+<% end %>
+
+<%= render template: 'layouts/application' %>
