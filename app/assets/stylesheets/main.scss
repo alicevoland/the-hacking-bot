@@ -4,7 +4,17 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  margin-top: 0;
+  padding-top: 0;
 }
 footer {
   margin-top: auto;
+}
+.jumbotron-home {
+    background-image: url(asset_path('jumbotron.jpg'));
+    background-size: cover;
+  }
+
+nav {
+    background-color: #37ABF6;
 }
