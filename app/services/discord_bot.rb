@@ -16,6 +16,7 @@ class DiscordBot
       list.add_command StatusCommand.new
       list.add_command MoodCommand.new
       list.add_command VisibilityCommand.new
+      list.add_command MentionCommand.new
 
       list.add_help
 
