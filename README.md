@@ -21,6 +21,25 @@ L'inscription se fait en deux étapes. Une première étape sur le site [the-hac
 
 ## Fonctionnement
 
+Une commande `$help` permet d'afficher les commandes disponibles :
+```
+Liste des commandes
+----------------------------------------------------------------------------------------------------
+$$COMMAND    ARGS                          : DESCRIPTION
+$verify      EMAIL TOKEN                   : Pour lier le compte Discord à The Hacking Bot
+$status      STATUS                        : Au choix need_help, can_help, work_in_progress
+$wip                                       : raccourci pour $status _work_in_progress
+$can_help                                  : raccourci pour $status can_help
+$need_help                                 : raccourci pour $status need_help
+$mood        ton humeur, une petite phrase : Bloqué sur :&#!!?
+$visibility  TRUE|FALSE                    : Au choix true ou false
+$visible                                   : raccourci pour $visibility true
+$unvisible                                 : raccourci pour $visibility false
+$mention     STATUS                        : Mentionne les utilisateurs visibles et avec statut=SATUS
+----------------------------------------------------------------------------------------------------
+-- A bientôt sur : https://the-hacking-bot.herokuapp.com/
+```
+
 Assez peu de fonctionnalités pour le moment. On peut voir le statut des personnes qui souhaite le rendre public sur la page "Tous les membres" : [the-hacking-bot.herokuapp.com/users](https://the-hacking-bot.herokuapp.com/users).
 
 On peut choisir d'avoir un statut visible ou invisible :
@@ -30,11 +49,15 @@ On peut choisir d'avoir un statut visible ou invisible :
 On peut choisir d'ajouter un "mood" qui apparait avec le statut si on a choisi visible :
  * `$mood problème avec sendgrid.... HELP`
 
-Et enfin on peut définir son statut qui apparait donc uniquement si on a choisi visible :
+On peut définir son statut qui apparait donc uniquement si on a choisi visible :
  * `$wip` (statut neutre - work in progress)
  * `$can_help`
  * `$need_help`
 
+Enfin on peut demander au bot de mentionner des personnes (parmi celles "visibles" donc) selon leur statut :
+ * `$mention can_help`
+ * `$mention need_help`
+ * `$mention wip`
 
 ## Pour la suite
 
@@ -45,6 +68,5 @@ Je cherche d'abord des retours sur :
  * Est-ce que ça peut être utile ?
  * Qu'est ce qu'il faudrait améliorer ?
  * Qu'est ce qui peut poser problème (le fait d'être affiché sur une page publique par exemple ?)
- * Bon le front est horrible : 1. je suis pas très à l'aise, 2. je n'ai pas commencé à y réfléchir
 
-Merci pour tout retour !
+Merci pour tout retour ! => L'idéal est de créer un "Issue" dans ce projet GitHub
