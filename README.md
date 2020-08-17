@@ -15,7 +15,7 @@ L'inscription se fait en deux étapes. Une première étape sur le site [the-hac
 
  1. Créer un compte : [the-hacking-bot.herokuapp.com/users/sign_up](https://the-hacking-bot.herokuapp.com/users/sign_up)
  2. Aller sur la page "Mon compte" [the-hacking-bot.herokuapp.com/profile](https://the-hacking-bot.herokuapp.com/profile)
- 3. Cliquer sur le bouton "Lier mon compte Discord" et copier ce qui apparait `$verify test@yopmail.com lbKfw5t+xO5p5g==`
+ 3. Voir : "Lier mon compte Discord" et copier ce qui apparait `$verify test@yopmail.com lbKfw5t+xO5p5g==`
  4. Aller parler à The Hacking Bot en message privé, ou bien sur le channel DRAFT/bots
  5. Et voilà, la liste des commandes est disponible en tapant `$help`
 
@@ -40,7 +40,7 @@ $mention     STATUS                        : Mentionne les utilisateurs visibles
 -- A bientôt sur : https://the-hacking-bot.herokuapp.com/
 ```
 
-Assez peu de fonctionnalités pour le moment. On peut voir le statut des personnes qui souhaite le rendre public sur la page "Tous les membres" : [the-hacking-bot.herokuapp.com/users](https://the-hacking-bot.herokuapp.com/users).
+On peut voir le statut des personnes qui souhaitent le rendre public sur la page "Tous les membres" : [the-hacking-bot.herokuapp.com/users](https://the-hacking-bot.herokuapp.com/users).
 
 On peut choisir d'avoir un statut visible ou invisible :
  * `$visible`
@@ -61,12 +61,4 @@ Enfin on peut demander au bot de mentionner des personnes (parmi celles "visible
 
 ## Pour la suite
 
-L'idée est ensuite de laisser le bot mettre directement en relation les personnes, éventuellement pouvoir indiquer sur quel point on a besoin d'aide, et proposer une vrai page personnelle par utilisateur, etc.
-
-Je cherche d'abord des retours sur :
-
- * Est-ce que ça peut être utile ?
- * Qu'est ce qu'il faudrait améliorer ?
- * Qu'est ce qui peut poser problème (le fait d'être affiché sur une page publique par exemple ?)
-
-Merci pour tout retour ! => L'idéal est de créer un "Issue" dans ce projet GitHub
+Voir les "Issues" ouvertes sur le projet GitHub.
